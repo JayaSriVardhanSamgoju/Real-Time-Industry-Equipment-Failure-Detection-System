@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+mlruns/
+mlflow.db
+*.zip
+*.egg-info/
+.pytest_cache/
+storage/
+model/model.pkl
+train_colab.ipynb
+README.md
