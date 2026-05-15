@@ -1,0 +1,85 @@
+export const COPY = {
+  brand: {
+    name: 'FailureScope',
+    tagline: 'Industrial AI Operations Console',
+    version: 'v1.0',
+  },
+  hero: {
+    headline: 'Industrial Intelligence.',
+    subHeadline: 'Real-time ML anomaly detection for mission-critical equipment.',
+    cta: 'Launch Monitoring Console →',
+  },
+  nav: {
+    landing: 'Home',
+    dashboard: 'Monitoring',
+    architecture: 'Architecture',
+    explainability: 'ML Insights',
+  },
+  dashboard: {
+    title: 'Monitoring Dashboard',
+    subtitle: 'Real-time equipment health & anomaly detection',
+    metrics: {
+      totalRecords: 'Total Records',
+      anomalyRate: 'Anomaly Rate',
+      throughput: 'Throughput',
+      machineState: 'Machine State',
+      driftStatus: 'Drift Status',
+      activeAlerts: 'Active Alerts',
+    },
+    sensors: {
+      temperature: 'Temperature',
+      vibration: 'Vibration',
+      humidity: 'Humidity',
+    },
+    sections: {
+      anomalyTimeline: 'Anomaly Timeline',
+      machineState: 'Machine State',
+      alertCenter: 'Alert Center',
+      driftPanel: 'Drift Monitoring',
+      correlationPanel: 'Correlation Matrix',
+      infraPanel: 'Infrastructure Health',
+    },
+  },
+  insight: {
+    title: 'INSIGHT',
+    idle: 'Hover over a data point to explore AI-powered insights',
+    sections: {
+      operational: 'OPERATIONAL',
+      mlReasoning: 'ML REASONING',
+      statistical: 'STATISTICAL',
+      riskAssessment: 'RISK ASSESSMENT',
+      correlations: 'CORRELATIONS',
+      technicalDetails: 'Technical ML Details',
+    },
+  },
+  architecture: {
+    title: 'System Architecture',
+    subtitle: 'Interactive pipeline explorer — click any node for details',
+  },
+  explainability: {
+    title: 'ML Explainability',
+    subtitle: 'Understanding the AI behind anomaly detection',
+    isolationForest: 'Isolation Forest',
+    slidingWindow: 'Sliding Window',
+    adaptiveThreshold: 'Adaptive Threshold',
+    featureEngineering: 'Feature Engineering',
+    driftConcept: 'Concept Drift',
+  },
+  alerts: {
+    filterAll: 'All',
+    filterCritical: 'Critical',
+    filterHigh: 'High',
+    filterMedium: 'Medium',
+    filterLow: 'Low',
+    filterAck: 'Acknowledged',
+    searchPlaceholder: 'Search alerts...',
+  },
+  errors: {
+    connectionFailed: 'Unable to connect to API',
+    retrying: 'Retrying connection...',
+    noData: 'No data available',
+  },
+  footer: {
+    techStack: ['Python', 'FastAPI', 'Apache Kafka', 'scikit-learn', 'MLflow', 'EvidentlyAI', 'React', 'TypeScript'],
+  },
+} as const;

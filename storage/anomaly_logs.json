@@ -1,0 +1,2 @@
+{"timestamp": "2026-05-15T07:48:25.164669", "equipment_id": "EQP-001", "alert_level": "MEDIUM", "anomaly_score": -0.5969735940219353, "temperature": 94.0, "vibration": 2.152, "humidity": 43.36, "ml_flagged": true, "rule_flagged": true}
+{"timestamp": "2026-05-15T08:51:42.296070", "equipment_id": "EQP-001", "alert_level": "HIGH", "anomaly_score": -0.6200064252263506, "temperature": 91.81, "vibration": 2.512, "humidity": 44.2, "ml_flagged": true, "rule_flagged": true}

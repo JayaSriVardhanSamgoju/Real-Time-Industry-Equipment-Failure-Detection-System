@@ -202,7 +202,7 @@ Interactive API docs available at `http://localhost:8000/docs` (Swagger UI).
 
 ---
 
-## 📊 Dashboard (Streamlit + Plotly)
+## 📊 Dashboard (React + TypeScript)
 
 Premium dark-themed real-time monitoring dashboard with:
 
@@ -231,7 +231,7 @@ Real Time Industry Equipment Failure Detection/
 │   ├── __init__.py
 │   └── sensor_simulator.py      # Multi-stage degradation simulator + Kafka producer
 │
-├── kafka/
+├── kafka_integration/
 │   ├── __init__.py
 │   ├── producer.py              # Kafka producer wrapper
 │   └── consumer.py              # Kafka consumer wrapper
@@ -334,13 +334,15 @@ uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 Verify at: [http://localhost:8000/health](http://localhost:8000/health)
 API Docs at: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-### Step 5 — Start Streamlit Dashboard (Terminal 2)
+### Step 5 — Start React Frontend Dashboard (Terminal 2)
 
 ```bash
-streamlit run dashboard/app.py
+cd frontend
+npm install
+npm run dev
 ```
 
-Dashboard available at: [http://localhost:8501](http://localhost:8501)
+Dashboard available at: [http://localhost:5173](http://localhost:5173)
 
 ### Step 6 — Start Inference Engine (Terminal 3)
 
@@ -364,7 +366,7 @@ python -m data_generator.sensor_simulator
 |---|---|---|
 | Docker | `docker-compose -f docker/docker-compose.yml up -d zookeeper kafka` | Kafka infrastructure |
 | Terminal 1 | `uvicorn api.main:app --reload` | FastAPI backend |
-| Terminal 2 | `streamlit run dashboard/app.py` | Live dashboard |
+| Terminal 2 | `cd frontend && npm run dev` | Live React dashboard |
 | Terminal 3 | `python -m model.predict` | ML inference engine |
 | Terminal 4 | `python -m data_generator.sensor_simulator` | Sensor data stream |
 

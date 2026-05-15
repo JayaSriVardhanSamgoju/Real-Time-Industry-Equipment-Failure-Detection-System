@@ -6,7 +6,7 @@ import numpy as np
 import warnings
 import requests
 from preprocessing.window_features import extract_features, get_feature_columns
-from kafka.consumer import get_consumer
+from kafka_integration.consumer import get_consumer
 from alerting.alert_manager import send_alert, classify_alert
 from monitoring.drift_detection import detect_drift
 from utils.helpers import load_config
