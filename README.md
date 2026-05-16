@@ -1,24 +1,24 @@
-        # 🏭 Real-Time Industrial Equipment Failure Detection System
+ # 🏭 Real-Time Industrial Equipment Failure Detection System
 
-        ### Production-Grade Streaming Machine Learning Pipeline
+### Production-Grade Streaming Machine Learning Pipeline
 
-        ---
+ ---
 
-        ## 💼 Business Problem & Impact
+ ## 💼 Business Problem & Impact
 
-        Industrial equipment failures lead to **massive financial losses**, production downtime, and safety risks. Traditional maintenance systems are reactive — they detect issues only after failure occurs.
+ Industrial equipment failures lead to **massive financial losses**, production downtime, and safety risks. Traditional maintenance systems are reactive — they detect issues only after failure occurs.
 
-        This project solves that by enabling:
+ This project solves that by enabling:
         - 🔍 **Early anomaly detection** in machine behavior
         - ⚡ **Real-time monitoring of equipment health**
         - 🛠️ **Predictive maintenance instead of reactive repair**
         - 💰 **Reduced operational downtime and cost savings**
 
-        ---
+---
 
-        ## 🎯 System Objective
+## 🎯 System Objective
 
-        Design and implement a **real-time intelligent monitoring system** that:
+Design and implement a **real-time intelligent monitoring system** that:
         - Continuously ingests sensor data streams via Apache Kafka
         - Detects abnormal machine behavior instantly using Isolation Forest
         - Adapts to changing data patterns over time (adaptive thresholds)
@@ -26,14 +26,14 @@
         - Monitors for data drift using EvidentlyAI
         - Tracks ML experiments with MLflow
 
-        ---
+---
 
-        ## 🏗️ System Architecture
+ ## 🏗️ System Architecture
 
-        ### 🔁 End-to-End Pipeline
+### 🔁 End-to-End Pipeline
 
-        ```
-        [Sensor Simulation Engine]
+ ```
+[Sensor Simulation Engine]
                 ↓
         [Kafka Producer]
                 ↓
