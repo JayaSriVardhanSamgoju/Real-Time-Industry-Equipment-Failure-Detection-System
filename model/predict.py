@@ -118,7 +118,7 @@ def run_prediction_loop():
 
             result = {
                 "equipment_id": data["equipment_id"],
-                "is_anomaly": is_anomaly,
+                "is_anomaly": bool(is_anomaly),
                 "anomaly_score": anomaly_score,
                 "alert_level": alert_level,
                 "dynamic_threshold": dynamic_threshold,
