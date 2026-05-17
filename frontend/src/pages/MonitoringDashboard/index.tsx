@@ -9,6 +9,7 @@ import { AlertCenter } from './AlertCenter';
 import { DriftPanel } from './DriftPanel';
 import { CorrelationPanel } from './CorrelationPanel';
 import { InfraPanel } from './InfraPanel';
+import { EquipmentSelector } from './EquipmentSelector';
 import { useLiveData } from '@/hooks/useLiveData';
 import { useAnomalies } from '@/hooks/useAnomalies';
 import { useSystemMetrics } from '@/hooks/useSystemMetrics';
@@ -25,7 +26,10 @@ const MonitoringDashboard: React.FC = () => {
 
   return (
     <PageContainer>
-      <SectionHeader title={COPY.dashboard.title} subtitle={COPY.dashboard.subtitle} />
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <SectionHeader title={COPY.dashboard.title} subtitle={COPY.dashboard.subtitle} noMargin />
+        <EquipmentSelector />
+      </div>
       <GlobalMetricsHeader />
       <SensorChartGrid />
       <AnomalyTimeline />

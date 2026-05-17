@@ -14,7 +14,10 @@ interface SensorStoreState {
   currentVibration: number;
   currentHumidity: number;
   machineState: MachineState;
+  selectedEquipmentId: string;
+  availableEquipments: string[];
   setLiveData: (data: PredictionResult[]) => void;
+  setSelectedEquipmentId: (id: string) => void;
 }
 
 const determineMachineState = (
@@ -64,7 +67,7 @@ const formatTimestamp = (ts: string): string => {
   }
 };
 
-export const useSensorStore = create<SensorStoreState>((set) => ({
+export const useSensorStore = create<SensorStoreState>((set, get) => ({
   liveData: [],
   temperatureData: [],
   vibrationData: [],
@@ -73,17 +76,31 @@ export const useSensorStore = create<SensorStoreState>((set) => ({
   currentVibration: 0,
   currentHumidity: 0,
   machineState: 'NORMAL',
+  selectedEquipmentId: 'EQP-001',
+  availableEquipments: [],
   setLiveData: (data: PredictionResult[]) => {
     if (data.length === 0) return;
-    const latest = data[data.length - 1];
-    const anomalyCount = data.filter((d) => d.is_anomaly).length;
-    const anomalyRate = (anomalyCount / Math.max(data.length, 1)) * 100;
+    
+    // Identify all unique equipments in the stream
+    const uniqueEquips = Array.from(new Set(data.map(d => d.equipment_id)));
+    
+    // Filter data for the selected equipment
+    const filteredData = data.filter(d => d.equipment_id === get().selectedEquipmentId);
+    if (filteredData.length === 0) {
+      set({ availableEquipments: uniqueEquips });
+      return;
+    }
+
+    const latest = filteredData[filteredData.length - 1];
+    const anomalyCount = filteredData.filter((d) => d.is_anomaly).length;
+    const anomalyRate = (anomalyCount / Math.max(filteredData.length, 1)) * 100;
 
     set({
-      liveData: data,
-      temperatureData: toChartPoints(data, 'temperature'),
-      vibrationData: toChartPoints(data, 'vibration'),
-      humidityData: toChartPoints(data, 'humidity'),
+      liveData: filteredData,
+      availableEquipments: uniqueEquips,
+      temperatureData: toChartPoints(filteredData, 'temperature'),
+      vibrationData: toChartPoints(filteredData, 'vibration'),
+      humidityData: toChartPoints(filteredData, 'humidity'),
       currentTemperature: latest.temperature,
       currentVibration: latest.vibration,
       currentHumidity: latest.humidity,
@@ -95,4 +112,5 @@ export const useSensorStore = create<SensorStoreState>((set) => ({
       ),
     });
   },
+  setSelectedEquipmentId: (id: string) => set({ selectedEquipmentId: id }),
 }));

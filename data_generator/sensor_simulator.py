@@ -113,19 +113,30 @@ def start_simulation():
         value_serializer=lambda v: json.dumps(v).encode("utf-8")
     )
     topic = config["kafka"]["sensor_topic"]
-    state = EquipmentState()
+    
+    # Simulate 3 different machines
+    equipments = [
+        {"id": "EQP-001", "state": EquipmentState()},
+        {"id": "EQP-002", "state": EquipmentState()},
+        {"id": "EQP-003", "state": EquipmentState()}
+    ]
 
-    logger.info("Sensor simulation started — streaming to Kafka topic '%s'", topic)
+    logger.info("Multi-equipment simulation started — streaming %d machines to Kafka topic '%s'", len(equipments), topic)
 
     tick = 0
     try:
         while True:
-            state.step()
-            data = generate_sensor_data(tick, state)
-            producer.send(topic, data)
-            logger.info("Tick %d [%s] | T=%.1f V=%.3f H=%.1f",
-                        tick, state.stage,
-                        data["temperature"], data["vibration"], data["humidity"])
+            for eq in equipments:
+                eq["state"].step()
+                data = generate_sensor_data(tick, eq["state"])
+                data["equipment_id"] = eq["id"]  # Override with specific ID
+                producer.send(topic, data)
+                
+                if tick % 10 == 0:
+                    logger.info("Tick %d | Machine %s [%s] | T=%.1f V=%.3f",
+                                tick, eq["id"], eq["state"].stage,
+                                data["temperature"], data["vibration"])
+            
             tick += 1
             time.sleep(sim_config["send_interval_sec"])
     except KeyboardInterrupt:

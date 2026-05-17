@@ -6,6 +6,7 @@ import { AlertCard } from '@/components/cards/AlertCard';
 import { ChartInsightLayout } from '@/components/layout/ChartInsightLayout';
 import { useInsightStore } from '@/store/useInsightStore';
 import { useAlertStore } from '@/store/useAlertStore';
+import { useSensorStore } from '@/store/useSensorStore';
 import { COPY } from '@/config/copy';
 import { Search } from 'lucide-react';
 
@@ -20,9 +21,11 @@ const FILTER_OPTIONS = [
 export const AlertCenter: React.FC = () => {
   const { alerts, filter, searchQuery, setFilter, setSearchQuery, acknowledgeAlert } =
     useAlertStore();
+  const selectedEquipmentId = useSensorStore((s) => s.selectedEquipmentId);
 
   const filteredAlerts = useMemo(() => {
-    let filtered = [...alerts];
+    // First, filter by the globally selected equipment
+    let filtered = alerts.filter(a => a.equipmentId === selectedEquipmentId);
 
     if (filter !== 'All') {
       filtered = filtered.filter(
